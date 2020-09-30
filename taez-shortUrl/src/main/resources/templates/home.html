@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#shortbtn").click( function(){
+		var oriurl = encodeURI(document.getElementById("oriurl").value);
+			$.ajax({
+				type: 'POST',
+				url: 'http://localhost:9000/taez/shortUrl/save',
+				data: {url: oriurl},
+				datatype: 'text',
+				success: function(data){
+					$("#result").html(data);
+				},
+				error: function(){
+					console.log("error");
+				}
+			});
+	});
+});
+</script>
+<body>
+	<form id="shorturlForm" method="post">
+		<label>URL :</label> <input type="text" id="oriurl" /> 
+		<button type="button" id="shortbtn" >생성</button>
+			</br> <label>ShortUrl
+			:</label>
+		<div id="result"></div>
+	</form>
+</body>
+
+</html>
